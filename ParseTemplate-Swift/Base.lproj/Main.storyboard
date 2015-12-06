@@ -68,6 +68,9 @@
                                 <rect key="frame" x="82" y="186" width="157" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Forgot your password?"/>
+                                <connections>
+                                    <action selector="resetPasswordButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hmf-T0-Reu"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="weE-JG-Z4A">
                                 <rect key="frame" x="90" y="224" width="140" height="30"/>
@@ -88,11 +91,58 @@
                         <outlet property="passwordTextField" destination="OAp-5d-9HE" id="w43-gK-b1M"/>
                         <segue destination="Qjv-85-nRL" kind="presentation" identifier="fromLogInToSignUp" id="ixi-7G-Q8X"/>
                         <segue destination="xoN-gb-PT3" kind="presentation" identifier="fromLogInToMain" id="sle-GJ-NOn"/>
+                        <segue destination="DPu-X7-jTL" kind="presentation" identifier="fromLogInToResetPassword" id="cl7-Kg-52f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="487" y="302"/>
+        </scene>
+        <!--Password reminder-->
+        <scene sceneID="zJZ-8E-9hx">
+            <objects>
+                <viewController storyboardIdentifier="ForgotPasswordViewController" id="eSR-N9-Rou" customClass="ResetPasswordViewController" customModule="ParseTemplate_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kHo-kB-gjR"/>
+                        <viewControllerLayoutGuide type="bottom" id="YcM-6X-Mv6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ILX-ha-2DM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IqV-aa-M8z">
+                                <rect key="frame" x="40" y="72" width="240" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rUh-XD-6JG">
+                                <rect key="frame" x="40" y="110" width="240" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Reset password"/>
+                                <connections>
+                                    <action selector="resetPasswordButtonTapped:" destination="eSR-N9-Rou" eventType="touchUpInside" id="tkZ-33-DPq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Password reminder" id="Nya-Sa-B3M">
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="gLd-t1-LnH">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="eSR-N9-Rou" id="o5J-o9-4Vx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="IqV-aa-M8z" id="kd9-hc-vx9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6V6-1e-uuI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1586" y="-399"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="7ta-1w-7z2">
@@ -212,6 +262,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Tu-Cy-wap" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="45" y="1153"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3aC-ba-qay">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DPu-X7-jTL" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2iF-9v-8nQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eSR-N9-Rou" kind="relationship" relationship="rootViewController" id="dhU-wl-Nup"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Koh-XL-HR0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1140" y="-399"/>
         </scene>
     </scenes>
 </document>

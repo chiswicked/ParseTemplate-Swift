@@ -94,6 +94,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
+    @IBAction func resetPasswordButtonTapped(sender: UIButton) {
+        print("Password Reset Button Tapped")
+        
+        performSegueWithIdentifier("fromLogInToResetPassword", sender: nil)
+    }
+    
     @IBAction func signUpButtonTapped(sender: UIButton) {
         print("Sign Up Button Tapped")
         
