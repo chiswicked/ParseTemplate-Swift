@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8415ABAA1C14E04600FE97A3 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8415ABA91C14E04600FE97A3 /* ResetPasswordViewController.swift */; };
 		84D986BC1C133448003A9641 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D986BB1C133448003A9641 /* AppDelegate.swift */; };
 		84D986C11C133449003A9641 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D986BF1C133449003A9641 /* Main.storyboard */; };
 		84D986C31C133449003A9641 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D986C21C133449003A9641 /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		8415ABA81C14450D00FE97A3 /* ParseTemplate-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParseTemplate-Swift-Bridging-Header.h"; sourceTree = "<group>"; };
+		8415ABA91C14E04600FE97A3 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		84D986B81C133448003A9641 /* ParseTemplate-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ParseTemplate-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D986BB1C133448003A9641 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84D986C01C133449003A9641 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				84D986BB1C133448003A9641 /* AppDelegate.swift */,
 				84D986FD1C138DFC003A9641 /* AuthValidator.swift */,
 				84D986FB1C13856B003A9641 /* CheckBox.swift */,
+				8415ABA91C14E04600FE97A3 /* ResetPasswordViewController.swift */,
 				84D986F31C133A6E003A9641 /* LogInViewController.swift */,
 				84D986F91C1384FC003A9641 /* SignUpViewController.swift */,
 				84D986F71C1383E7003A9641 /* MainViewController.swift */,
@@ -238,6 +241,7 @@
 			files = (
 				84D986FC1C13856B003A9641 /* CheckBox.swift in Sources */,
 				84D986D81C1337F3003A9641 /* MBProgressHUD.m in Sources */,
+				8415ABAA1C14E04600FE97A3 /* ResetPasswordViewController.swift in Sources */,
 				84D986FE1C138DFC003A9641 /* AuthValidator.swift in Sources */,
 				84D987001C138E36003A9641 /* UIExtensions.swift in Sources */,
 				84D986FA1C1384FC003A9641 /* SignUpViewController.swift in Sources */,
