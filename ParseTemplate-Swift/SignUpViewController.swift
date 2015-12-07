@@ -73,11 +73,23 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBAction func signUpButtonTapped(sender: UIButton) {
         print("Create Account Button Tapped")
         
-        let passwordString = PasswordString(string: passwordTextField.text)
+        dismissKeyboard()
         
-        guard passwordString.isValid() else {
+        // Validate email
+        
+        guard emailTextField.text!.isValidEmail() else {
+            emailTextField.shake()
             return
         }
+        
+        // Validate password
+        
+        guard passwordTextField.text!.isValidPassword() else {
+            passwordTextField.shake()
+            return
+        }
+        
+        // Register user
         
         let user = PFUser()
         
@@ -92,6 +104,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             if (success) {
                 
                 // Registration successful
+                
                 print("Registration successful")
                 self.emailTextField.text = ""
                 self.passwordTextField.text = ""
@@ -99,6 +112,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             } else if let error = error {
                 
                 // Registration error
+                
                 print("Registration error: \(error.localizedDescription)")
             }
         }
@@ -111,5 +125,5 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    } 
+    }
 }
