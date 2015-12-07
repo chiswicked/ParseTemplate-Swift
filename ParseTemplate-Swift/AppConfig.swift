@@ -1,5 +1,5 @@
 //
-//  ApplicationConfig.swift
+//  AppConfig.swift
 //  ParseTemplate-Swift
 //
 //  Created by Norbert Metz on 29/11/2015.
