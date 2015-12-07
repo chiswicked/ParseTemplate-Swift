@@ -109,6 +109,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 self.emailTextField.text = ""
                 self.passwordTextField.text = ""
                 
+                self.dismissViewControllerAnimated(true, completion: nil)
+                
             } else if let error = error {
                 
                 // Registration error

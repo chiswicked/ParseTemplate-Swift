@@ -76,6 +76,23 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     @IBAction func logInButtonTapped(sender: UIButton) {
         print("Log In Button Tapped")
         
+        dismissKeyboard()
+        
+        // Validate email
+        
+        guard !emailTextField.text!.isEmpty else {
+            emailTextField.shake()
+            return
+        }
+        
+        // Validate password
+        
+        guard !passwordTextField.text!.isEmpty else {
+            passwordTextField.shake()
+            return
+        }
+        
+        // Authenticate user
         PFUser.logInWithUsernameInBackground(emailTextField.text!, password: passwordTextField.text!) { user, error in
             
             if let user = PFUser.currentUser() {
