@@ -28,6 +28,8 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    @IBOutlet weak var userDetailsLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -35,10 +37,27 @@ class MainViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if PFUser.currentUser() == nil || !PFUser.currentUser()!.authenticated {
+        let user = PFUser.currentUser()
+        
+        if user == nil || !user!.authenticated {
             print("User not logged in")
             self.dismissViewControllerAnimated(true, completion: nil)
             return
+        } else {
+            
+            // Construct user details label
+            
+            var userDetails: String = ""
+            
+            userDetails += "First name: \(constructUserDetailSring(user?.objectForKey("firstName")))\n"
+            userDetails += "Last name: \(constructUserDetailSring(user?.objectForKey("lastName")))\n"
+            userDetails += "Email: \(constructUserDetailSring(user?.email))\n"
+            userDetails += "Phone: \(constructUserDetailSring(user?.objectForKey("phone")))\n"
+            userDetails += "Marketing consent: \(constructUserDetailSring(user?.objectForKey("marketingConsent")))\n"
+            userDetails += "Member since: \(constructUserDetailSring(user?.createdAt))\n"
+            userDetails += "Account activated: \(constructUserDetailSring(user?.objectForKey("emailVerified")))\n"
+            
+            userDetailsLabel.text = userDetails
         }
     }
     
@@ -52,5 +71,28 @@ class MainViewController: UIViewController {
             
             self.dismissViewControllerAnimated(true, completion: nil)
         }
+    }
+    
+    private func constructUserDetailSring(userDetail: AnyObject?) -> String {
+        
+        switch userDetail {
+            
+        case is String:
+            return userDetail as! String
+            
+        case is Bool:
+            return userDetail as! Bool ? "Yes" : "No"
+            
+        case is NSDate:
+            let formatter = NSDateFormatter()
+            formatter.dateStyle = NSDateFormatterStyle.ShortStyle
+            formatter.timeStyle = .ShortStyle
+            return formatter.stringFromDate(userDetail as! NSDate)
+            
+        default:
+            if userDetail != nil { print(userDetail!.dynamicType) }
+        }
+        
+        return "N/A"
     }
 }
