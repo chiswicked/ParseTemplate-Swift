@@ -34,7 +34,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         emailTextField.delegate     = self
-
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
     }
