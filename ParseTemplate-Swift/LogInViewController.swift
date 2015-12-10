@@ -93,23 +93,41 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         switch sender {
             
         case parseLoginButton:
+
+            dismissKeyboard()
+        
+            // Validate email
             
-            PFUser.logInWithUsernameInBackground(emailTextField.text!, password: passwordTextField.text!) { user, error in
-                
-                if let user = PFUser.currentUser() {
-                    if user.authenticated {
-                        
-                        // Parse login successful
-                        print("Log in succesful: \(PFUser.currentUser())")
-                        self.passwordTextField.text = ""
-                        self.performSegueWithIdentifier("fromLogInToMain", sender: nil)
-                    }
-                } else if let error = error {
-                    
-                    // Parse login error
-                    print("Log in error: \(error.localizedDescription)")
-                }
+            guard !emailTextField.text!.isEmpty else {
+                emailTextField.shake()
+                return
             }
+            
+            // Validate password
+            
+            guard !passwordTextField.text!.isEmpty else {
+                passwordTextField.shake()
+                return
+            }
+        
+            // Authenticate user
+ 
+                PFUser.logInWithUsernameInBackground(emailTextField.text!, password: passwordTextField.text!) { user, error in
+                    
+                    if let user = PFUser.currentUser() {
+                        if user.authenticated {
+                            
+                            // Parse login successful
+                            print("Log in succesful: \(PFUser.currentUser())")
+                            self.passwordTextField.text = ""
+                            self.performSegueWithIdentifier("fromLogInToMain", sender: nil)
+                        }
+                    } else if let error = error {
+                        
+                        // Parse login error
+                        print("Log in error: \(error.localizedDescription)")
+                    }
+                }
             
         case facebookLoginButton:
             

@@ -16,6 +16,16 @@
                     <view key="view" contentMode="scaleToFill" id="5RZ-Hc-v4W">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="15" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAo-79-b77">
+                                <rect key="frame" x="20" y="72" width="280" height="291"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.9" green="0.9" blue="0.9" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -27,10 +37,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="userDetailsLabel" destination="hAo-79-b77" id="KKv-1f-wVE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZP-mD-Ni0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="487" y="1153"/>
+            <point key="canvasLocation" x="1690" y="302"/>
         </scene>
         <!--Log In View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -152,7 +165,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6V6-1e-uuI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1586" y="-399"/>
+            <point key="canvasLocation" x="1690" y="-1191"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="7ta-1w-7z2">
@@ -211,7 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GsD-4h-BnJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1586" y="302"/>
+            <point key="canvasLocation" x="1690" y="-416"/>
         </scene>
         <!--Log In Navigation Controller-->
         <scene sceneID="ter-k7-0JK">
@@ -251,7 +264,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TKF-hq-cph" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1140" y="302"/>
+            <point key="canvasLocation" x="1164" y="-416"/>
         </scene>
         <!--Main Navigation Controller-->
         <scene sceneID="HrP-JQ-hOe">
@@ -271,7 +284,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Tu-Cy-wap" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="45" y="1153"/>
+            <point key="canvasLocation" x="1164" y="302"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3aC-ba-qay">
@@ -291,7 +304,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Koh-XL-HR0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1140" y="-399"/>
+            <point key="canvasLocation" x="1144" y="-1191"/>
         </scene>
     </scenes>
 </document>
