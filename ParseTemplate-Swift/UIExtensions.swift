@@ -27,18 +27,31 @@ import UIKit
 
 extension UITextField {
     
-    private func shake() {
+    func shake(color: CGColor? = UIColor.redColor().CGColor, receiveFocus: Bool = true) {
+        
+        if let color = color {
+            startGlow(color, intensity: 0.8)
+        }
         self.transform = CGAffineTransformMakeTranslation(-10, 0)
         
-        UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .CurveEaseInOut, animations: {
+        UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.1, initialSpringVelocity: 0.1, options: .CurveEaseOut, animations: {
             self.transform = CGAffineTransformIdentity
             }, completion: { finished in
-                print("animation finished")
+                
+                if color != nil {
+                    self.stopGlow()
+                }
+                
+                if receiveFocus {
+                    self.becomeFirstResponder()
+                }
         })
     }
     
     func stopGlow() {
         self.layer.shadowColor = nil
+        self.layer.shadowRadius = 0.0
+        self.layer.shadowOpacity = 0.0;
     }
     
     func startGlow(color: CGColor, intensity: CGFloat) {

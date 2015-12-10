@@ -55,22 +55,21 @@ struct Password {
     }
 }
 
-class PasswordString {
-    
-    private var password: String
-    
-    init(string: String?) {
+extension String {
+    // TODO: Actual error handling instead of prints
+    func isValidEmail() -> Bool {
         
-        if let psw = string {
-            password = psw
-        } else {
-            password = ""
+        guard matchesEmailSyntax() else {
+            print("Email does not appear to have a valid syntax")
+            return false
         }
-    }
-    
-    func isValid() -> Bool {
         
-        guard isLengthWithinLimits() else {
+        return true
+    }
+    // TODO: Actual error handling instead of prints
+    func isValidPassword() -> Bool {
+        
+        guard isLengthWithinLimits(Password.minimumLength, maximum: Password.maximumLength) else {
             print("Password must be minimum \(Password.minimumLength) and maximum \(Password.maximumLength) characters")
             return false
         }
@@ -98,15 +97,23 @@ class PasswordString {
         return true
     }
     
-    private func isLengthWithinLimits() -> Bool {
-        return password.characters.count >= Password.minimumLength && password.characters.count <= Password.maximumLength
+    private func matchesEmailSyntax() -> Bool {
+        // TODO: Can the return options be made more concise?
+        if let _ = self.rangeOfString("^.+@.+\\..+$", options: .RegularExpressionSearch) {
+            return true
+        }
+        return false
+    }
+    // TODO: suppress argument names
+    private func isLengthWithinLimits(minimum: Int, maximum: Int) -> Bool {
+        return (self.characters.count >=  minimum) && (self.characters.count <= maximum)
     }
     
     private func containsLowercase() -> Bool {
         
         var count = 0
         for char in "abcdefghijklmnopqrstuvwxyz".characters {
-            if password.characters.contains(char) {
+            if self.characters.contains(char) {
                 if ++count >= Password.minimumNumberOfLowercase {
                     return true
                 }
@@ -119,7 +126,7 @@ class PasswordString {
         
         var count = 0
         for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ".characters {
-            if password.characters.contains(char) {
+            if self.characters.contains(char) {
                 if ++count >= Password.minimumNumberOfLowercase {
                     return true
                 }
@@ -132,7 +139,7 @@ class PasswordString {
         
         var count = 0
         for i in 0...9 {
-            if password.containsString(String(i)) {
+            if self.containsString(String(i)) {
                 if ++count >= Password.minimumNumberOfDigit {
                     return true
                 }
@@ -145,7 +152,7 @@ class PasswordString {
         
         var count = 0
         for char in "!@#$%^&*?+-".characters {
-            if password.characters.contains(char) {
+            if self.characters.contains(char) {
                 if ++count >= Password.minimumNumberOfSpecial {
                     return true
                 }
