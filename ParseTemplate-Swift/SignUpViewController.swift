@@ -115,6 +115,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 
                 // Registration error
                 
+                // TODO: If email already exists, check if account could be linked to existing user
                 print("Registration error: \(error.localizedDescription)")
             }
         }

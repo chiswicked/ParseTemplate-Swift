@@ -148,6 +148,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                             userDetails.startWithCompletionHandler() { (connection, result, error) in
                                 if let user = PFUser.currentUser() {
                                     
+                                    // TODO: Check if account could be linked to existing user
                                     let userEmail               = result["email"] as? String
                                     let userFirstName           = result["first_name"] as? String
                                     let userLastName            = result["last_name"] as? String
