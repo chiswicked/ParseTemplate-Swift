@@ -49,3 +49,13 @@ struct ParseConfig {
     static let applicationId        = "4ppL1c4T10N1DpL4c3H0ld3r"
     static let clientKey            = "cLi3n7K3yPl4c3h0lD3R"
 }
+
+/**
+*
+*  Facebook configuration
+*
+*  1. Go to https://developers.facebook.com/
+*  2. Select My Apps > [Your App name]
+*  3. Go to Dashboards (left hand side)
+*  4. Copy and paste App ID into CFBundleURLSchemes and FacebookAppID placeholders (found in Info.plist)
+*/

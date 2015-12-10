@@ -40,14 +40,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //
         // Parse.enableLocalDatastore()
         
-        // Initialize Parse.
+        // Initialize Parse
         Parse.setApplicationId(ParseConfig.applicationId, clientKey: ParseConfig.clientKey)
         
         // [Optional] Track statistics around application opens.
         //
         // PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
+        // // Initialize Facebook
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
         return true
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
     func applicationWillResignActive(application: UIApplication) {

@@ -27,19 +27,25 @@ import Parse
 import UIKit
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         emailTextField.delegate     = self
         passwordTextField.delegate  = self
-
+        
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        
+        // [OPTIONAL] Basic Facebook login button for testing
+        
+        let loginButton = FBSDKLoginButton.init(type: UIButtonType.RoundedRect)
+        loginButton.center = self.view.center;
+        self.view.addSubview(loginButton)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -56,7 +62,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     func dismissKeyboard() {
         view.endEditing(true)
     }
-
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         switch textField {
@@ -93,7 +99,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-
+    
     @IBAction func resetPasswordButtonTapped(sender: UIButton) {
         print("Password Reset Button Tapped")
         
@@ -116,7 +122,5 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 

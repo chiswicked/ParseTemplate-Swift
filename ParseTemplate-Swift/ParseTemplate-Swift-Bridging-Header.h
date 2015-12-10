@@ -9,6 +9,9 @@
 #ifndef ParseTemplate_Swift_Bridging_Header_h
 #define ParseTemplate_Swift_Bridging_Header_h
 
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+
 #import "MBProgressHUD.h"
 
 #endif
