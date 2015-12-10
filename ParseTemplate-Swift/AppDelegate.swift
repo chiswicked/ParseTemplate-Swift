@@ -25,6 +25,7 @@
 
 import Bolts
 import Parse
+import ParseFacebookUtilsV4
 import UIKit
 
 @UIApplicationMain
@@ -47,8 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //
         // PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
-        // // Initialize Facebook
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        // Initialize Facebook
+        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
+        
+        // FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         return true
     }

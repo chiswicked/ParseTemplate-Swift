@@ -59,3 +59,8 @@ struct ParseConfig {
 *  3. Go to Dashboards (left hand side)
 *  4. Copy and paste App ID into CFBundleURLSchemes and FacebookAppID placeholders (found in Info.plist)
 */
+struct FacebookConfig {
+    
+    static let loginPermissions         = ["public_profile", "email"]
+    static let userDetailsParameters    = ["fields": "id, email, first_name, last_name"]
+}

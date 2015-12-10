@@ -24,12 +24,17 @@
 //  THE SOFTWARE.
 
 import Parse
+import ParseFacebookUtilsV4
 import UIKit
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBOutlet weak var parseLoginButton: UIButton!
+    @IBOutlet weak var facebookLoginButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,13 +48,16 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         // [OPTIONAL] Basic Facebook login button for testing
         
-        let loginButton = FBSDKLoginButton.init(type: UIButtonType.RoundedRect)
-        loginButton.center = self.view.center;
-        self.view.addSubview(loginButton)
+        // let loginButton = FBSDKLoginButton.init(type: UIButtonType.RoundedRect)
+        // loginButton.center = self.view.center;
+        // self.view.addSubview(loginButton)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        let token = PFUser.currentUser()?.sessionToken
+        print("Token: \(token)")
         
         if let user = PFUser.currentUser() {
             if user.authenticated {
@@ -79,24 +87,78 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    @IBAction func logInButtonTapped(sender: UIButton) {
+    @IBAction func loginButtonTapped(sender: UIButton) {
         print("Log In Button Tapped")
         
-        PFUser.logInWithUsernameInBackground(emailTextField.text!, password: passwordTextField.text!) { user, error in
+        switch sender {
             
-            if let user = PFUser.currentUser() {
-                if user.authenticated {
-                    
-                    // Log in successful
-                    print("Log in succesful: \(PFUser.currentUser())")
-                    self.passwordTextField.text = ""
-                    self.performSegueWithIdentifier("fromLogInToMain", sender: nil)
-                }
-            } else if let error = error {
+        case parseLoginButton:
+            
+            PFUser.logInWithUsernameInBackground(emailTextField.text!, password: passwordTextField.text!) { user, error in
                 
-                // Log in error
-                print("Log in error: \(error.localizedDescription)")
+                if let user = PFUser.currentUser() {
+                    if user.authenticated {
+                        
+                        // Parse login successful
+                        print("Log in succesful: \(PFUser.currentUser())")
+                        self.passwordTextField.text = ""
+                        self.performSegueWithIdentifier("fromLogInToMain", sender: nil)
+                    }
+                } else if let error = error {
+                    
+                    // Parse login error
+                    print("Log in error: \(error.localizedDescription)")
+                }
             }
+            
+        case facebookLoginButton:
+            
+            PFFacebookUtils.logInInBackgroundWithReadPermissions(FacebookConfig.loginPermissions) { (user:PFUser?, error: NSError?) in
+                if let user = PFUser.currentUser() {
+                    if user.authenticated {
+                        
+                        // Facebook login successful
+                        print("Log in succesful: \(PFUser.currentUser())")
+                        self.passwordTextField.text = ""
+                        
+                        
+                        print("New user: \(user.isNew)")
+                        if user.isNew {
+                            
+                            // Loggen in with Facebook for the first time (sign up)
+                            let userDetails = FBSDKGraphRequest(graphPath: "me", parameters: FacebookConfig.userDetailsParameters)
+                            userDetails.startWithCompletionHandler() { (connection, result, error) in
+                                if let user = PFUser.currentUser() {
+                                    
+                                    let userEmail               = result["email"] as? String
+                                    let userFirstName           = result["first_name"] as? String
+                                    let userLastName            = result["last_name"] as? String
+                                    let userMarketingConsent    = false
+                                    
+                                    user.email = userEmail
+                                    user.setObject(userFirstName!, forKey: "firstName")
+                                    user.setObject(userLastName!, forKey: "lastName")
+                                    user.setObject(userMarketingConsent, forKey: "marketingConsent")
+                                    
+                                    user.saveInBackgroundWithBlock() { (success: Bool, erro:NSError?) in
+                                        if success {
+                                            print("Successfully updated user details")
+                                        }
+                                        // TODO: Proper segueing in main thread
+                                    }
+                                }
+                            }
+                        }
+                        self.performSegueWithIdentifier("fromLogInToMain", sender: nil)
+                    }
+                } else if let error = error {
+                    
+                    // Facebook login error
+                    print("Log in error: \(error.localizedDescription)")
+                }
+            }
+            
+        default: break
         }
     }
     
