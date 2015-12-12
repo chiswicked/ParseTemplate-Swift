@@ -44,10 +44,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(tap)
     }
     
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         switch textField {

@@ -39,10 +39,6 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(tap)
     }
     
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         if textField == emailTextField {

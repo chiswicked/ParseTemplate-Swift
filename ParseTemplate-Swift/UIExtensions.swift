@@ -27,6 +27,13 @@ import UIKit
 
 // TODO: Add extension to UIViewController to display alert pop-ups with error messages
 
+extension UIViewController {
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
 extension UITextField {
     
     func shake(color: CGColor? = UIColor.redColor().CGColor, receiveFocus: Bool = true) {

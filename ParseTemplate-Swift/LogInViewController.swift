@@ -61,10 +61,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         switch textField {
