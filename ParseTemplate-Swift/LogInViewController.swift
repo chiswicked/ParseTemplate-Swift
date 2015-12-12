@@ -45,12 +45,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
-        
-        // [OPTIONAL] Basic Facebook login button for testing
-        
-        // let loginButton = FBSDKLoginButton.init(type: UIButtonType.RoundedRect)
-        // loginButton.center = self.view.center;
-        // self.view.addSubview(loginButton)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -90,6 +84,16 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginButtonTapped(sender: UIButton) {
         print("Log In Button Tapped")
         
+        // Start activity indicator
+        
+        let activityIndicator = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        activityIndicator.labelText = "Authenticating"
+        activityIndicator.detailsLabelText = "Please wait"
+        
+        defer {
+            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+        }
+        
         switch sender {
             
         case parseLoginButton:
@@ -110,7 +114,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 return
             }
         
-            // Authenticate user
+            // Initiate Parse authentication process
  
                 PFUser.logInWithUsernameInBackground(emailTextField.text!, password: passwordTextField.text!) { user, error in
                     
@@ -131,6 +135,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             
         case facebookLoginButton:
             
+            // Initiate Facebook authentication process
             PFFacebookUtils.logInInBackgroundWithReadPermissions(FacebookConfig.loginPermissions) { (user:PFUser?, error: NSError?) in
                 if let user = PFUser.currentUser() {
                     if user.authenticated {
