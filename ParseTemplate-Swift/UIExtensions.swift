@@ -25,9 +25,15 @@
 
 import UIKit
 
-// TODO: Add extension to UIViewController to display alert pop-ups with error messages
-
 extension UIViewController {
+    
+    func alert(title: String, message: String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+        alert.addAction(action)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
     
     func dismissKeyboard() {
         view.endEditing(true)

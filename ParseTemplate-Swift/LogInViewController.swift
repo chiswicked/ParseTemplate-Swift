@@ -93,9 +93,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         switch sender {
             
         case parseLoginButton:
-
+            
             dismissKeyboard()
-        
+            
             // Validate email
             
             guard !emailTextField.text!.isEmpty else {
@@ -109,25 +109,26 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 passwordTextField.shake()
                 return
             }
-        
+            
             // Initiate Parse authentication process
- 
-                PFUser.logInWithUsernameInBackground(emailTextField.text!, password: passwordTextField.text!) { user, error in
-                    
-                    if let user = PFUser.currentUser() {
-                        if user.authenticated {
-                            
-                            // Parse login successful
-                            print("Log in succesful: \(PFUser.currentUser())")
-                            self.passwordTextField.text = ""
-                            self.performSegueWithIdentifier("fromLogInToMain", sender: nil)
-                        }
-                    } else if let error = error {
+            
+            PFUser.logInWithUsernameInBackground(emailTextField.text!, password: passwordTextField.text!) { user, error in
+                
+                if let user = PFUser.currentUser() {
+                    if user.authenticated {
                         
-                        // Parse login error
-                        print("Log in error: \(error.localizedDescription)")
+                        // Parse login successful
+                        print("Log in succesful: \(PFUser.currentUser())")
+                        self.passwordTextField.text = ""
+                        self.performSegueWithIdentifier("fromLogInToMain", sender: nil)
                     }
+                } else if let error = error {
+                    
+                    // Parse login error
+                    
+                    self.alert("Authentication Error", message: error.localizedDescription)
                 }
+            }
             
         case facebookLoginButton:
             
@@ -174,7 +175,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 } else if let error = error {
                     
                     // Facebook login error
-                    print("Log in error: \(error.localizedDescription)")
+                    self.alert("Authentication Error", message: error.localizedDescription)
                 }
             }
             
