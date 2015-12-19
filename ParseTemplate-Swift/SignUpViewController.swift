@@ -69,16 +69,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBAction func signUpButtonTapped(sender: UIButton) {
         print("Create Account Button Tapped")
         
-        // Start activity indicator
-        
-        let activityIndicator = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        activityIndicator.labelText = "Creating your account"
-        activityIndicator.detailsLabelText = "Please wait"
-        
-        defer {
-            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-        }
-        
         dismissKeyboard()
         
         // Validate email
@@ -93,6 +83,16 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         guard passwordTextField.text!.isValidPassword() else {
             passwordTextField.shake()
             return
+        }
+
+        // Start activity indicator
+        
+        let activityIndicator = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        activityIndicator.labelText = "Creating your account"
+        activityIndicator.detailsLabelText = "Please wait"
+        
+        defer {
+            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
         }
         
         // Register user
